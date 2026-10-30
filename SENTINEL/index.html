@@ -1,0 +1,314 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SENTINEL | Cybersecurity Intelligence</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Mono&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-icon">⬡</div>
+            <div>
+                <h2>SENTINEL</h2>
+                <small>CYBER INTELLIGENCE</small>
+            </div>
+        </div>
+
+        <p class="nav-label">MAIN MENU</p>
+
+        <nav>
+            <button class="nav-item active" data-page="dashboard">▦ Dashboard</button>
+            <button class="nav-item" data-page="analyzer">◈ Password Analyzer</button>
+            <button class="nav-item" data-page="learning">⌘ Cyber Learning</button>
+            <button class="nav-item" data-page="about">ⓘ About Project</button>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="online"><span></span> SYSTEM ONLINE</div>
+            <small>AI SECURITY ENGINE v1.0</small>
+            <small>ACADEMIC PROJECT</small>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main">
+
+        <header class="topbar">
+            <div>
+                <div class="breadcrumb">SECURITY OPERATIONS / <span id="pageName">DASHBOARD</span></div>
+                <h2 id="welcomeTitle">Security Overview</h2>
+            </div>
+            <div class="top-right">
+                <span class="status">● All systems operational</span>
+                <div class="avatar">ST</div>
+            </div>
+        </header>
+
+        <!-- DASHBOARD -->
+        <section id="dashboard" class="page active">
+
+            <div class="hero">
+                <div class="hero-content">
+                    <span class="eyebrow">WELCOME TO SENTINEL CYBER LAB</span>
+                    <h1>Intelligent Password<br><span>Security Analysis.</span></h1>
+                    <p>Analyze password strength, identify security weaknesses and explore machine-learning-based password intelligence.</p>
+                    <button class="primary-btn" onclick="showPage('analyzer')">
+                        Start Security Analysis →
+                    </button>
+                </div>
+                <div class="hero-art">
+                    <div class="shield">⬡</div>
+                    <div class="orbit orbit-one"></div>
+                    <div class="orbit orbit-two"></div>
+                    <div class="orbit orbit-three"></div>
+                    <div class="orbit-text">AI / ML<br>PROTECTED</div>
+                </div>
+            </div>
+
+            <div class="section-heading">
+                <div>
+                    <h3>Security Overview</h3>
+                    <p>Your current analysis activity</p>
+                </div>
+                <span class="live-tag">● LIVE SESSION</span>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-top">TOTAL ANALYSES <span>◈</span></div>
+                    <h2 id="totalAnalyses">0</h2>
+                    <small>Passwords tested this session</small>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-top">STRONG PASSWORDS <span>⬡</span></div>
+                    <h2 id="strongCount">0</h2>
+                    <small>Strong security classifications</small>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-top">AVERAGE SCORE <span>▥</span></div>
+                    <h2 id="averageScore">--</h2>
+                    <small>Out of 100 points</small>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-top">ML ENGINE <span>✧</span></div>
+                    <h2 class="online-text">READY</h2>
+                    <small>Browser-based demo engine</small>
+                </div>
+            </div>
+
+            <div class="content-grid">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3>Recent Security Activity</h3>
+                        <span class="live-tag">SESSION LOG</span>
+                    </div>
+                    <div id="activityList" class="activity-list">
+                        <p class="empty">No analysis performed yet.</p>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3>Security Checklist</h3>
+                    </div>
+                    <div class="check-item">✓ Use unique passwords</div>
+                    <div class="check-item">✓ Enable multi-factor authentication</div>
+                    <div class="check-item">✓ Avoid personal information</div>
+                    <div class="check-item">✓ Use a password manager</div>
+                    <div class="check-item">✓ Prefer long passphrases</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PASSWORD ANALYZER -->
+        <section id="analyzer" class="page">
+
+            <div class="section-heading">
+                <div>
+                    <h3>Password Strength Analyzer</h3>
+                    <p>Run an intelligent security assessment on a sample password.</p>
+                </div>
+                <span class="live-tag">● ANALYSIS READY</span>
+            </div>
+
+            <div class="analyzer-panel panel">
+                <label for="password">ENTER TEST PASSWORD</label>
+
+                <div class="password-input">
+                    <input type="password" id="password"
+                           placeholder="Enter a sample password...">
+                    <button id="togglePassword" type="button">SHOW</button>
+                </div>
+
+                <button class="primary-btn analyze-btn" onclick="analyzePassword()">
+                    ◈ ANALYZE PASSWORD
+                </button>
+
+                <p class="privacy-note">🔒 Use dummy passwords only. Do not enter real account credentials.</p>
+            </div>
+
+            <div id="results" class="results hidden">
+
+                <div class="result-grid">
+                    <div class="panel score-panel">
+                        <span class="eyebrow">OVERALL SECURITY SCORE</span>
+                        <div class="score-number">
+                            <span id="score">0</span><small>/100</small>
+                        </div>
+                        <h3 id="strength">--</h3>
+                        <div class="progress">
+                            <div id="scoreBar"></div>
+                        </div>
+                    </div>
+
+                    <div class="panel">
+                        <span class="eyebrow">ENTROPY ESTIMATE</span>
+                        <div class="score-number">
+                            <span id="entropy">0</span><small>bits</small>
+                        </div>
+                        <p>Estimated password search-space entropy.</p>
+                    </div>
+
+                    <div class="panel">
+                        <span class="eyebrow">ML-STYLE CLASSIFICATION</span>
+                        <h2 id="prediction">--</h2>
+                        <p id="confidence">Feature-based demo prediction</p>
+                    </div>
+                </div>
+
+                <div class="content-grid result-details">
+                    <div class="panel">
+                        <h3>Security Checks</h3>
+                        <div id="checks"></div>
+                    </div>
+
+                    <div class="panel">
+                        <h3>Risk Indicators</h3>
+                        <div id="risks"></div>
+                    </div>
+                </div>
+
+                <div class="panel recommendation-panel">
+                    <h3>✧ Intelligent Recommendations</h3>
+                    <div id="recommendations"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LEARNING HUB -->
+        <section id="learning" class="page">
+            <div class="section-heading">
+                <div>
+                    <h3>Cybersecurity Learning Hub</h3>
+                    <p>Learn the fundamentals of password security.</p>
+                </div>
+            </div>
+
+            <div class="learning-grid">
+                <div class="panel learning-card">
+                    <span class="learning-icon">🔐</span>
+                    <h3>Password Entropy</h3>
+                    <p>Entropy measures password unpredictability. Longer passwords with a larger character pool generally offer more possible combinations.</p>
+                </div>
+
+                <div class="panel learning-card">
+                    <span class="learning-icon">⚔️</span>
+                    <h3>Brute Force Attacks</h3>
+                    <p>An attacker systematically attempts possible password combinations until a match is found.</p>
+                </div>
+
+                <div class="panel learning-card">
+                    <span class="learning-icon">🧠</span>
+                    <h3>Machine Learning</h3>
+                    <p>ML classifiers can learn patterns from labeled examples and classify password characteristics.</p>
+                </div>
+
+                <div class="panel learning-card">
+                    <span class="learning-icon">🛡️</span>
+                    <h3>Multi-Factor Authentication</h3>
+                    <p>MFA adds another verification factor, reducing the risk of account compromise when a password is exposed.</p>
+                </div>
+
+                <div class="panel learning-card">
+                    <span class="learning-icon">🔎</span>
+                    <h3>Dictionary Attacks</h3>
+                    <p>Attackers try lists of common words, phrases and previously exposed passwords.</p>
+                </div>
+
+                <div class="panel learning-card">
+                    <span class="learning-icon">🔑</span>
+                    <h3>Password Managers</h3>
+                    <p>Password managers help generate and store unique, complex credentials for different accounts.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT -->
+        <section id="about" class="page">
+            <div class="section-heading">
+                <div>
+                    <h3>About Sentinel</h3>
+                    <p>Project overview and technical architecture.</p>
+                </div>
+            </div>
+
+            <div class="panel about-panel">
+                <span class="eyebrow">PROJECT TITLE</span>
+                <h1>AI & ML Based Password Strength Analyzer</h1>
+                <p>Sentinel is a student cybersecurity project designed to evaluate password characteristics, estimate strength and demonstrate intelligent classification.</p>
+
+                <h3>Technology Stack</h3>
+                <div class="tech-list">
+                    <span>HTML5</span><span>CSS3</span>
+                    <span>JavaScript</span><span>Python (optional backend)</span>
+                    <span>Machine Learning</span>
+                    <span>Random Forest (backend model)</span>
+                </div>
+
+                <h3>Project Workflow</h3>
+                <div class="workflow">
+                    <div>01<br><b>Input</b></div>
+                    <div>02<br><b>Feature Extraction</b></div>
+                    <div>03<br><b>Analysis</b></div>
+                    <div>04<br><b>Classification</b></div>
+                    <div>05<br><b>Recommendations</b></div>
+                </div>
+
+                <h3>Project Objectives</h3>
+                <ul>
+                    <li>Evaluate password length and character diversity.</li>
+                    <li>Detect predictable patterns and common passwords.</li>
+                    <li>Demonstrate entropy estimation.</li>
+                    <li>Explore machine learning classification.</li>
+                    <li>Promote better cybersecurity awareness.</li>
+                </ul>
+
+                <div class="notice">
+                    <b>Research limitation:</b> This frontend demonstration uses deterministic rules and a feature-based estimate. It does not contain a trained Random Forest model. A Python ML backend is needed for genuine trained-model predictions.
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            SENTINEL CYBER LAB © 2026
+            <span>DEFEND • ANALYZE • LEARN</span>
+        </footer>
+
+    </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
